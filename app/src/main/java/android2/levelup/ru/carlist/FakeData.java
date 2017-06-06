@@ -13,12 +13,15 @@ public class FakeData {
 
         ArrayList<Car> carList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
 
-            Car car = new Car("BMW " + i
+            Car car = new Car(
+                    "BMW " + i
                     , "ImageUrl " + UUID.randomUUID().toString().substring(0, 9)
-                    , "Vin " + UUID.randomUUID().toString().substring(0, 9)
+                    , "Vin " + UUID.randomUUID().toString().substring(0, 30)
             );
+
+            carList.add(car);
 
         }
 
