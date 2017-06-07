@@ -8,16 +8,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Car {
 
-//    @SerializedName("name")
-//    @Expose
+    @SerializedName("name")
+    @Expose
     private String name;
 
-//    @SerializedName("image")
-//    @Expose
+    @SerializedName("image")
+    @Expose
     private String image;
 
-//    @SerializedName("vin")
-//    @Expose
+    @SerializedName("vin")
+    @Expose
     private String vin;
 
     public Car(String name, String image, String vin) {

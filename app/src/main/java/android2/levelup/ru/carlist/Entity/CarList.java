@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class CarList {
 
-//    @SerializedName("cars")
-//    @Expose
-    private ArrayList<Car> cars = new ArrayList<>();
+    @SerializedName("cars")
+    @Expose
+    private ArrayList<Car> cars;
 
     public CarList(ArrayList<Car> cars) {
         this.cars = cars;
@@ -19,8 +19,6 @@ public class CarList {
         return cars;
     }
 
-    public void setCars(ArrayList<Car> cars) {
-        this.cars = cars;
-    }
+
 
 }
