@@ -3,15 +3,26 @@ package android2.levelup.ru.carlist.Entity;
 //Класс описывает сущность: машину
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Car {
 
+//    @SerializedName("name")
+//    @Expose
     private String name;
-    private String imageURL;
+
+//    @SerializedName("image")
+//    @Expose
+    private String image;
+
+//    @SerializedName("vin")
+//    @Expose
     private String vin;
 
-    public Car(String name, String imageURL, String vin) {
+    public Car(String name, String image, String vin) {
         this.name = name;
-        this.imageURL = imageURL;
+        this.image = image;
         this.vin = vin;
     }
 
@@ -23,12 +34,12 @@ public class Car {
         this.name = name;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getVin() {

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.RequestManager;
+
 import java.util.ArrayList;
 
 import android2.levelup.ru.carlist.Entity.Car;
@@ -21,6 +23,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     private ArrayList<Car> cars;
     private OnListItemClickListener clickListener;
+//    private RequestManager imageRequestManager;
 
     public CarAdapter(ArrayList<Car> cars, OnListItemClickListener clickListener) {
         this.cars = cars;
@@ -65,6 +68,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
             carName.setText(car.getName());
             carVin.setText(car.getVin());
             carImage.setImageResource(R.mipmap.ic_launcher);
+//            imageRequestManager.load(car.getImage()).into(carImage);
         }
 
 

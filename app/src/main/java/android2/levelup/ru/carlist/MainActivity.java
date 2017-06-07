@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.RequestManager;
+
 import java.util.ArrayList;
 
 import android2.levelup.ru.carlist.Adapter.CarAdapter;
@@ -15,11 +17,13 @@ import android2.levelup.ru.carlist.Entity.Car;
 import android2.levelup.ru.carlist.Listener.OnListItemClickListener;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private CarAdapter adapter;
     final static String TAG = "MyLog";
+//    private RequestManager imageRequestManager;
 
 
 
@@ -31,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
+
         final ArrayList<Car> cars = FakeData.getData();
         Log.d(TAG + MainActivity.class.getSimpleName(), "cars.size() = " + cars.size());
+
+
 
         adapter = new CarAdapter(cars, new OnListItemClickListener() {
             @Override
@@ -43,4 +51,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
+
 }
