@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private CarAdapter adapter;
     final static String TAG = "MyLog";
     private CarList carList;
+    private ArrayList<Car> cars;
 
     //    private RequestManager imageRequestManager;
 
@@ -47,17 +48,17 @@ public class MainActivity extends AppCompatActivity {
 
 //        final ArrayList<Car> cars = FakeData.getData();
 //        final ArrayList<Car> cars = new RealData().getData();
-        ArrayList<Car> cars = carList.getCars();
+//        ArrayList<Car> cars = carList.getCars();
+//
+//        Log.d(TAG + MainActivity.class.getSimpleName(), "cars.size() = " + cars.size());
 
-        Log.d(TAG + MainActivity.class.getSimpleName(), "cars.size() = " + cars.size());
 
-
-        adapter = new CarAdapter(cars, new OnListItemClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-//                Toast.makeText(MainActivity.this, cars.get(position).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        adapter = new CarAdapter(cars, new OnListItemClickListener() {
+//            @Override
+//            public void onClick(View v, int position) {
+////                Toast.makeText(MainActivity.this, cars.get(position).getName(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         loadCars();
 
@@ -76,7 +77,12 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     CarList carsResponse = response.body();
 //                    RequestManager imageRequestManager = Glide.with(getContext());
-                    recyclerView.setAdapter(new CarAdapter(carsResponse.getCars(), null));
+                    recyclerView.setAdapter(new CarAdapter(carsResponse.getCars(), new OnListItemClickListener() {
+                        @Override
+                        public void onClick(View v, int position) {
+
+                        }
+                    }));
                 }
             }
 
