@@ -43,6 +43,16 @@ public class RealData {
             @Override
             public void onResponse(Call<CarList> call, Response<CarList> response) {
                 carList = response.body();
+
+
+                if(carList != null){
+
+                    Log.d(TAG, "Что-то получили: " + carList.toString());
+
+                }else{
+                    Log.w(TAG, "carList == nul!!!");
+                }
+
                 Log.d(TAG, "Что-то получили: " + carList.toString());
             }
 
@@ -55,5 +65,6 @@ public class RealData {
         });
 
         return carList.getCars();
+
     }
 }
