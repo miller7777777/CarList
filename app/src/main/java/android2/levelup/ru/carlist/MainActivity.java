@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final ArrayList<Car> cars = FakeData.getData();
+//        final ArrayList<Car> cars = FakeData.getData();
+        final ArrayList<Car> cars = new RealData().getData();
         Log.d(TAG + MainActivity.class.getSimpleName(), "cars.size() = " + cars.size());
 
 
