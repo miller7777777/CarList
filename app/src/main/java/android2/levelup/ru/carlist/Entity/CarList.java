@@ -1,7 +1,6 @@
 package android2.levelup.ru.carlist.Entity;
 
 import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

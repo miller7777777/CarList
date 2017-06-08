@@ -23,11 +23,13 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     private ArrayList<Car> cars;
     private OnListItemClickListener clickListener;
+    private RequestManager imageRequestManager;
 //    private RequestManager imageRequestManager;
 
-    public CarAdapter(ArrayList<Car> cars, OnListItemClickListener clickListener) {
+    public CarAdapter(ArrayList<Car> cars, RequestManager imageRequestManager, OnListItemClickListener clickListener) {
         this.cars = cars;
         this.clickListener = clickListener;
+        this.imageRequestManager = imageRequestManager;
         Log.d(TAG, "cars.size() = " + cars.size());
     }
 
@@ -67,8 +69,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         public void bind(Car car) {
             carName.setText(car.getName());
             carVin.setText(car.getVin());
-            carImage.setImageResource(R.mipmap.ic_launcher);
-//            imageRequestManager.load(car.getImage()).into(carImage);
+//            carImage.setImageResource(R.mipmap.ic_launcher);
+            imageRequestManager.load(car.getImage()).into(carImage);
         }
 
 
