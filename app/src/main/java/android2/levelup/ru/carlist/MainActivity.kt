@@ -17,8 +17,15 @@ import android2.levelup.ru.carlist.Entity.Car
 import android2.levelup.ru.carlist.Entity.CarList
 import android2.levelup.ru.carlist.Listener.OnListItemClickListener
 import android2.levelup.ru.carlist.RetrofitUtils.Api
+import android2.levelup.ru.carlist.db.CarsDBContract
+import android2.levelup.ru.carlist.db.CarsDBHelper
+import android2.levelup.ru.carlist.db.CarsDatabase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.facebook.stetho.okhttp3.StethoInterceptor
+import okhttp3.OkHttpClient
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +34,9 @@ class MainActivity : AppCompatActivity() {
     private val adapter: CarAdapter? = null
     private val carList: CarList? = null
     private val cars: ArrayList<Car>? = null
+    private val carsDBHelper: CarsDBHelper = CarsDBHelper(this)
+    private val carsDatabase: CarsDatabase = CarsDatabase(carsDBHelper)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView!!.layoutManager = LinearLayoutManager(this)
 
 
+
+
+
         loadCars()
 
     }
@@ -45,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val retrofit = Retrofit.Builder()
+                .client(provideOkhhtp())
                 .baseUrl("https://goo.gl")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
@@ -55,7 +69,16 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val carsResponse = response.body()
                     val imageRequestManager = Glide.with(this@MainActivity)
-                    recyclerView!!.adapter = CarAdapter(carsResponse!!.cars, imageRequestManager, OnListItemClickListener { v, position -> })
+
+//                    carsDatabase.insertCars(carsResponse!!.cars)
+                    carsDatabase.updateAllCars(carsResponse!!.cars)
+//                    carsDatabase.delete(carsResponse!!.cars[0])
+
+
+                    val carsFromBase: ArrayList<Car> = carsDatabase.getCars()!!
+
+                    recyclerView!!.adapter = CarAdapter(carsFromBase, imageRequestManager, OnListItemClickListener { v, position -> })
+//                    recyclerView!!.adapter = CarAdapter(carsResponse.cars, imageRequestManager, OnListItemClickListener { v, position -> })
                 }
             }
 
@@ -66,6 +89,12 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    fun provideOkhhtp() = OkHttpClient.Builder()
+            .addNetworkInterceptor(StethoInterceptor())
+            .build();
+
+
 
     companion object {
         internal val TAG = "MyLog"
